@@ -1,2 +1,1 @@
-# My-Portfolio
-Front-End &amp; Shopify Developer | Building modern responsive websites with JavaScript
+# Build-a-Complete-Responsive-Personal-Portfolio-Website-using-HTML-CSS-JavaScript

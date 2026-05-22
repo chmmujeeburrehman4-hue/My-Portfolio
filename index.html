@@ -1,0 +1,1480 @@
+cat > /home/claude/portfolio.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mujeeb | Shopify Developer Portfolio</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.main-portfilio{
+    width: 100%;
+    max-width: 1300px;
+    margin:0px auto;
+}
+body {
+    color: #ededed;
+    background: #081b29;
+      max-width: 1300px;
+    margin: 0px auto;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #081b29;
+}
+::-webkit-scrollbar-thumb {
+    background: #0ef;
+    border-radius: 10px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: #051129;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: .3s;
+
+}
+
+.header.sticky {
+    padding: 15px 10%;
+    box-shadow: 0 0 10px rgba(0,238,255,.2);
+}
+
+.logo {
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: default;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+}
+
+.navbar a {
+    display: inline-block;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideTop .5s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #0ef;
+}
+
+#menu-icon {
+    font-size: 36px;
+    color: #0ef;
+    cursor: pointer;
+    display: none;
+}
+
+/* ===== HOME ===== */
+.home {
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 70px 10% 0;
+    gap: 1.5rem;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideBottom 1s ease forwards;
+    animation-delay: .7s;
+}
+
+.home-content h3:nth-of-type(2) {
+    margin-bottom: 30px;
+    animation: slideTop 1s ease forwards;
+    animation-delay: .7s;
+}
+
+.home-content h3 span {
+    color: #0ef;
+}
+
+.home-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin: -3px 0;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.home-content p {
+    font-size: 16px;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1s;
+    line-height: 1.7;
+}
+
+.home-sci {
+    display: flex;
+}
+
+.home-sci a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #0ef;
+    text-decoration: none;
+    transition: .5s ease;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+    margin: 30px 15px 30px 0;
+}
+
+.home-sci a:hover {
+    background: #0ef;
+    color: #081b29;
+    box-shadow: 0 0 20px #0ef;
+}
+
+.btn-box-button {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-box {
+    padding: 12px 28px;
+    background: #0ef;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #081b29;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0;
+    animation: slideTop 1s ease forwards;
+    animation-delay: 2s;
+    box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
+    transition: .5s;
+}
+
+.btn-box:hover {
+    box-shadow: 0 0 5px #0ef, 0 0 25px #0ef, 0 0 50px #0ef, 0 0 100px #0ef;
+}
+
+/* HOME IMAGE */
+.home-img-box {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #0ef;
+    box-shadow: 0 0 20px #0ef;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1.5s;
+    flex-shrink: 0;
+}
+
+.home-img-box img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ===== SECTIONS COMMON ===== */
+section {
+    padding: 100px 10%;
+}
+
+.heading {
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.heading span {
+    color: #0ef;
+}
+ span  a{
+    color: #0ef;
+    text-decoration: none;
+}
+
+/* ===== ABOUT ===== */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    background: #0a2035;
+}
+
+.about-img {
+    width: 380px;
+    height: 380px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #0ef;
+    box-shadow: 0 0 25px #0ef;
+    flex-shrink: 0;
+}
+
+.about-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.about-text h2 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.about-text h2 span {
+    color: #0ef;
+}
+
+.about-text h4 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0ef;
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    color: #ccc;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* ===== SKILLS ===== */
+.skills {
+    background: #081b29;
+}
+
+.skills .heading {
+    margin-bottom: 50px;
+}
+
+.skills-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.skills-column {
+    flex: 1;
+    min-width: 280px;
+}
+
+.skills-column h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.skills-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #0ef;
+    border-radius: 5px;
+}
+
+.skills-box {
+    margin-bottom: 20px;
+}
+
+.skills-box .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.skills-box .info span {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.skills-box .bar {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skills-box .bar .progress {
+    height: 100%;
+    border-radius: 10px;
+    background: #0ef;
+    width: 0;
+    transition: width 1.5s ease;
+    box-shadow: 0 0 8px #0ef;
+}
+
+/* ===== SERVICES ===== */
+.services {
+    background: #0a2035;
+}
+
+.services .heading {
+    margin-bottom: 50px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+.service-box {
+    background: #081b29;
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: .5s ease;
+    border: 1px solid transparent;
+    cursor: default;
+}
+
+.service-box:hover {
+    border-color: #0ef;
+    box-shadow: 0 0 25px rgba(0,238,255,.15);
+    transform: translateY(-8px);
+}
+
+.service-box i {
+    font-size: 50px;
+    color: #0ef;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.service-box h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.service-box p {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.7;
+}
+
+/* ===== PORTFOLIO ===== */
+.portfolio {
+    background: #081b29;
+    overflow: hidden;
+}
+
+.portfolio .heading {
+    margin-bottom: 50px;
+}
+
+/* ===== PORTFOLIO ARROW BUTTONS ===== */
+.portfolio-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.portfolio-nav button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #0ef;
+    background: transparent;
+    color: #0ef;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .4s ease;
+    outline: none;
+}
+
+.portfolio-nav button:hover {
+    background: #0ef;
+    color: #081b29;
+    box-shadow: 0 0 20px #0ef;
+    transform: scale(1.1);
+}
+
+/* Scroll wrapper */
+.portfolio-scroll-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0 30px;
+    cursor: grab;
+}
+
+.portfolio-scroll-wrapper:active {
+    cursor: grabbing;
+}
+
+@keyframes portfolioScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.portfolio-container {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    transition: transform 0.5s ease;
+}
+
+/* Auto scroll — only when .auto-running class is present */
+.portfolio-container.auto-running {
+    animation: portfolioScroll 22s linear infinite;
+    animation-play-state: running;
+}
+
+.portfolio-scroll-wrapper:hover .portfolio-container.auto-running {
+    animation-play-state: paused;
+}
+
+.portfolio-box {
+    position: relative;
+    width: 320px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #0ef;
+    box-shadow: 0 0 10px rgba(0,238,255,.15);
+    transition: box-shadow .5s ease, transform .5s ease;
+    background: #0a2035;
+}
+
+.portfolio-box:hover {
+    box-shadow: 0 0 25px rgba(0,238,255,.35);
+    transform: scale(1.03);
+}
+
+.portfolio-thumb {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-box:hover .portfolio-img {
+    transform: scale(1.1);
+}
+
+.portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(8,27,41,0), rgba(8,27,41,.9));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 20px;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.portfolio-box:hover .portfolio-layer {
+    opacity: 1;
+}
+
+.portfolio-layer h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.portfolio-layer p {
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.portfolio-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #0ef;
+    border-radius: 50%;
+    color: #081b29;
+    font-size: 20px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.portfolio-layer a:hover {
+    box-shadow: 0 0 15px #0ef;
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.portfolio-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.portfolio-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.portfolio-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,238,255,.3);
+    display: inline-block;
+    transition: .3s;
+}
+
+.portfolio-dots span.active {
+    background: #0ef;
+    box-shadow: 0 0 8px #0ef;
+    width: 24px;
+    border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+    .portfolio-scroll-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        cursor: default;
+    }
+    .portfolio-scroll-wrapper::-webkit-scrollbar {
+        height: 4px;
+    }
+    .portfolio-scroll-wrapper::-webkit-scrollbar-thumb {
+        background: #0ef;
+        border-radius: 10px;
+    }
+    .portfolio-container {
+        animation: none !important;
+        transform: none !important;
+    }
+    .portfolio-box {
+        scroll-snap-align: start;
+        width: 280px;
+    }
+}
+
+.p-tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.t-s {
+    background: rgba(0,238,255,.1);
+    color: #0ef;
+    border: 1px solid rgba(0,238,255,.3);
+}
+
+.t-l {
+    background: rgba(14,255,200,.1);
+    color: #0effe0;
+    border: 1px solid rgba(14,255,200,.3);
+}
+
+.t-h {
+    background: rgba(255,165,0,.1);
+    color: #ffa500;
+    border: 1px solid rgba(255,165,0,.3);
+}
+
+.t-c {
+    background: rgba(138,43,226,.1);
+    color: #a855f7;
+    border: 1px solid rgba(138,43,226,.3);
+}
+
+/* ===== CONTACT ===== */
+.contact {
+    background: #0a2035;
+}
+
+.contact .heading {
+    margin-bottom: 10px;
+}
+
+.contact .sub-heading {
+    text-align: center;
+    color: #ccc;
+    font-size: 15px;
+    margin-bottom: 50px;
+}
+
+.contact-container {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-info-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 420px;
+}
+
+.contact-info-box h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.contact-info-box p {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #081b29;
+    border-radius: 10px;
+    border: 1px solid rgba(0,238,255,.15);
+    transition: .3s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.info-item:hover {
+    border-color: #0ef;
+    box-shadow: 0 0 15px rgba(0,238,255,.1);
+}
+
+.info-item i {
+    font-size: 28px;
+    color: #0ef;
+    flex-shrink: 0;
+}
+
+.info-item .info-text span {
+    font-size: 12px;
+    color: #0ef;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.info-item .info-text h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.contact-sci {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.contact-sci a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #0ef;
+    text-decoration: none;
+    transition: .5s ease;
+}
+
+.contact-sci a:hover {
+    background: #0ef;
+    color: #081b29;
+    box-shadow: 0 0 20px #0ef;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 480px;
+}
+
+.contact-form h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.input-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.input-box,
+.contact-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-box input,
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: 14px 18px;
+    background: #081b29;
+    border: 1.5px solid rgba(0,238,255,.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: .3s;
+    resize: none;
+}
+
+.contact-form select option {
+    background: #081b29;
+}
+
+.contact-form textarea {
+    height: 130px;
+    margin-bottom: 0;
+}
+
+.input-box input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    border-color: #0ef;
+    box-shadow: 0 0 10px rgba(0,238,255,.15);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888;
+}
+
+.contact-form .btn-box {
+    opacity: 1;
+    animation: none;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #051129;
+    padding: 40px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(0,238,255,.1);
+}
+
+.footer-text p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.footer-text p span {
+    color: #0ef;
+    font-weight: 600;
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    background: #0ef;
+    border-radius: 8px;
+    transition: .5s ease;
+    color: #081b29;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 20px #0ef;
+    transform: translateY(-3px);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideRight {
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes slideLeft {
+    0% { transform: translateX(100px); opacity: 0; }
+    100% { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes slideTop {
+    0% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes slideBottom {
+    0% { transform: translateY(-100px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1; }
+}
+
+/* ===== REVEAL ON SCROLL ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all .8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all .9s ease;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all .9s ease;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .header { padding: 15px 5%; }
+    .home { padding: 70px 5% 0; }
+    section { padding: 80px 5%; }
+    .footer { padding: 30px 5%; }
+}
+
+@media (max-width: 900px) {
+    #menu-icon { display: block; }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 5%;
+        background: #051129;
+        border-top: 1px solid rgba(0,238,255,.1);
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .navbar.open { display: flex; }
+
+    .navbar a {
+        margin-left: 0;
+        font-size: 17px;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0,238,255,.08);
+        animation: none;
+        opacity: 1;
+        display: block;
+    }
+
+    .home {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        padding-top: 120px;
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 40px;
+    }
+
+    .home-img-box { width: 280px; height: 280px; }
+    .home-sci { justify-content: center; }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-img { width: 280px; height: 280px; }
+
+    .skills-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .skills-column { text-align: center; }
+
+    .contact-container { flex-direction: column; align-items: center; }
+
+    .contact-info-box,
+    .contact-form { max-width: 100%; width: 100%; }
+
+    .heading { font-size: 36px; }
+
+    .footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+    .home-content h1 { font-size: 38px; }
+    .home-content h3 { font-size: 22px; }
+    .home-img-box { width: 220px; height: 220px; }
+    .about-img { width: 220px; height: 220px; }
+    .about-text h2 { font-size: 36px; }
+    .input-group { flex-direction: column; gap: 0; }
+    .portfolio-container { grid-template-columns: 1fr; }
+    .services-container { grid-template-columns: 1fr; }
+}
+</style>
+
+<body>
+
+<div class="main-portfilio">
+<header class="header" id="header">
+    <a href="#home" class="logo">Mujeeb.</a>
+    <i class='bx bx-menu' id="menu-icon" onclick="toggleMenu()"></i>
+    <nav class="navbar" id="navbar">
+        <a href="#home" style="--i:1" class="active">Home</a>
+        <a href="#about" style="--i:2">About</a>
+        <a href="#skills" style="--i:3">Skills</a>
+        <a href="#services" style="--i:4">Services</a>
+        <a href="#portfolio" style="--i:5">Portfolio</a>
+        <a href="#contact" style="--i:6">Contact</a>
+    </nav>
+</header>
+
+<!-- ===== HOME ===== -->
+<section class="home" id="home">
+    <div class="home-content">
+        <h3>Hello, It's Me</h3>
+        <h1>Mujeeb</h1>
+        <h3>And I'm a <span class="text"></span></h3>
+        <p>I am a professional Shopify Developer and Frontend Expert. My expertise includes Shopify Store Customization, Custom Liquid Coding, and HTML/CSS Web Design. I help businesses build stunning, high-converting online stores.</p>
+
+        <div class="home-sci">
+            <a href="#" style="--i:7"><i class='bx bxl-facebook'></i></a>
+            <a href="#" style="--i:8"><i class='bx bxl-instagram'></i></a>
+            <a href="https://wa.me/923048874174" target="_blank" style="--i:9"><i class='bx bxl-whatsapp'></i></a>
+            <a href="#" style="--i:10"><i class='bx bxl-tiktok'></i></a>
+        </div>
+
+        <a href="#about" class="btn-box">More About Me</a>
+    </div>
+
+    <div class="home-img-box">
+        <img src="Purple Illustrated Mountain Desktop Wallpaper.png" alt="Mujeeb">
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+    <div class="about-img reveal-left">
+        <img src="Purple Illustrated Mountain Desktop Wallpaper.png" alt="Mujeeb">
+    </div>
+
+    <div class="about-text reveal-right">
+        <h2>About <span>Me</span></h2>
+        <h4>Shopify Developer & Frontend Expert!</h4>
+        <p>I am Mujeeb, a passionate Shopify Developer and Frontend Designer based in Multan, Pakistan. I have completed a comprehensive Shopify course and work at a professional level to deliver outstanding results.</p>
+        <p>My specialization includes Custom Liquid Coding, Shopify Theme Customization, and highly responsive HTML/CSS designs. In every project, I deliver the perfect balance of clean code and beautiful design that keeps customers engaged and drives sales.</p>
+        <p>I am fluent in both Urdu and English and always available for new projects. Whether you need a store built from scratch or an existing one customized, I am ready to help!</p>
+        <div class="btn-box-button">
+            <a href="#" class="btn-box" style="animation:none;opacity:1;">Download CV</a>
+            <a href="https://github.com/chmmujeeburrehman4-hue" class="btn-box" style="animation:none;opacity:1;">GitHub</a>
+            <a href="https://www.linkedin.com/in/mujeeb-ch/" class="btn-box" style="animation:none;opacity:1;">LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section class="skills" id="skills">
+    <h2 class="heading reveal">My <span>Skills</span></h2>
+
+    <div class="skills-row">
+        <div class="skills-column reveal-left">
+            <h3>Coding Skills</h3>
+            <div class="skills-box">
+                <div class="info"><span>Shopify Development</span><span>92%</span></div>
+                <div class="bar"><div class="progress" data-width="92"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>Shopify Liquid</span><span>88%</span></div>
+                <div class="bar"><div class="progress" data-width="88"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>HTML & CSS</span><span>90%</span></div>
+                <div class="bar"><div class="progress" data-width="90"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>Responsive Design</span><span>87%</span></div>
+                <div class="bar"><div class="progress" data-width="87"></div></div>
+            </div>
+        </div>
+
+        <div class="skills-column reveal-right">
+            <h3>Professional Skills</h3>
+            <div class="skills-box">
+                <div class="info"><span>Store Optimization</span><span>85%</span></div>
+                <div class="bar"><div class="progress" data-width="85"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>Theme Customization</span><span>90%</span></div>
+                <div class="bar"><div class="progress" data-width="90"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>Canva Design</span><span>80%</span></div>
+                <div class="bar"><div class="progress" data-width="80"></div></div>
+            </div>
+            <div class="skills-box">
+                <div class="info"><span>Communication</span><span>95%</span></div>
+                <div class="bar"><div class="progress" data-width="95"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+    <h2 class="heading reveal">My <span>Services</span></h2>
+
+    <div class="services-container">
+        <div class="service-box reveal">
+            <i class='bx bxl-shopify'></i>
+            <h3>Shopify Store Setup</h3>
+            <p>Building a complete professional Shopify store from scratch — including products, collections, payment gateway, shipping setup, and full launch preparation.</p>
+        </div>
+        <div class="service-box reveal">
+            <i class='bx bx-palette'></i>
+            <h3>Theme Customization</h3>
+            <p>Fully customizing your existing Shopify theme to match your brand identity — sections, colors, fonts, and layout all tailored to your needs.</p>
+        </div>
+        <div class="service-box reveal">
+            <i class='bx bx-code-alt'></i>
+            <h3>Liquid Coding</h3>
+            <p>Building custom Liquid templates, sections, snippets, and blocks that work perfectly within the Shopify theme editor with full flexibility.</p>
+        </div>
+        <div class="service-box reveal">
+            <i class='bx bx-mobile-alt'></i>
+            <h3>Responsive Design</h3>
+            <p>Creating websites that look and work perfectly on every device — mobile, tablet, and desktop — to maximize user engagement and conversions.</p>
+        </div>
+        <div class="service-box reveal">
+            <i class='bx bx-tachometer'></i>
+            <h3>Speed Optimization</h3>
+            <p>Improving store loading speed, removing unnecessary code, and boosting Core Web Vitals scores to reduce bounce rate and increase sales.</p>
+        </div>
+        <div class="service-box reveal">
+            <i class='bx bxl-html5'></i>
+            <h3>HTML/CSS Design</h3>
+            <p>Crafting beautiful, pixel-perfect web pages using pure HTML and CSS — complete with custom animations, hover effects, and smooth transitions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="portfolio" id="portfolio">
+    <h2 class="heading reveal">My <span>Portfolio</span></h2>
+
+    <!-- Arrow Navigation Buttons -->
+    <div class="portfolio-nav reveal">
+        <button id="prevBtn" onclick="slidePortfolio(-1)" title="Previous">
+            <i class='bx bx-chevron-left'></i>
+        </button>
+        <button id="nextBtn" onclick="slidePortfolio(1)" title="Next">
+            <i class='bx bx-chevron-right'></i>
+        </button>
+    </div>
+
+    <div class="portfolio-scroll-wrapper" id="portfolioWrapper">
+        <div class="portfolio-container" id="portfolioContainer">
+
+            <div class="portfolio-box">
+                <div class="portfolio-thumb">
+                    <img src="Screenshot 2026-05-22 102419.png" class="portfolio-img">
+                    <div class="portfolio-layer">
+                        <a href="https://chmmujeeburrehman4-hue.github.io/custom-shopify-restaurant-theme/" target="_blank"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Grilli — Luxury Food Website</h3>
+                    <div class="portfolio-tags">
+                        <span class="p-tag t-h">HTML</span>
+                        <span class="p-tag t-c">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <div class="portfolio-thumb">
+                    <img src="Screenshot 2026-05-20 095742.png" alt="Fashion Store" class="portfolio-img">
+                    <div class="portfolio-layer">
+                        <a href="https://chmmujeeburrehman4-hue.github.io/Cofee-website/" target="_blank"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Fashion Store — Theme Customization</h3>
+                    <div class="portfolio-tags">
+                        <span class="p-tag t-s">Shopify</span>
+                        <span class="p-tag t-l">Liquid</span>
+                        <span class="p-tag t-c">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <div class="portfolio-thumb">
+                    <img src="Screenshot 2026-05-22 080654.png" alt="Electronics Store" class="portfolio-img">
+                    <div class="portfolio-layer">
+                        <h4>Electronics Store</h4>
+                        <p>Custom cart drawer & dynamic product filters</p>
+                        <a href="https://chmmujeeburrehman4-hue.github.io/The-Daily-Brew/" target="_blank"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Electronics Store — Custom Features</h3>
+                    <div class="portfolio-tags">
+                        <span class="p-tag t-s">Shopify</span>
+                        <span class="p-tag t-l">Liquid</span>
+                        <span class="p-tag t-h">HTML</span>
+                    </div>
+                </div>
+            </div>
+
+            
+                </div>
+            </div>
+
+        </div><!-- end portfolio-container -->
+    </div><!-- end portfolio-scroll-wrapper -->
+
+    <!-- Dots indicator -->
+    <div class="portfolio-dots" id="portfolioDots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+    <h2 class="heading reveal">Contact <span>Me!</span></h2>
+    <p class="sub-heading reveal">Have a project in mind? I would love to hear from you. Let's build something amazing together!</p>
+
+    <div class="contact-container">
+        <div class="contact-info-box reveal-left">
+            <h3>Get In Touch</h3>
+            <p>I am fully available for your Shopify projects. Whether you need a store built, customized, or any e-commerce problem solved — I am here to help and deliver the best results!</p>
+
+            <a href="https://wa.me/923048874174" target="_blank" class="info-item">
+                <i class='bx bxl-whatsapp'></i>
+                <div class="info-text">
+                    <span>WhatsApp</span>
+                    <h4>+92 304 8874174</h4>
+                </div>
+            </a>
+
+            <a href="mailto:chmmujeeburrehman4@gmail.com" class="info-item">
+                <i class='bx bx-envelope'></i>
+                <div class="info-text">
+                    <span>Email</span>
+                    <h4>chmmujeeburrehman4@gmail.com</h4>
+                </div>
+            </a>
+
+            <div class="info-item">
+                <i class='bx bx-map'></i>
+                <div class="info-text">
+                    <span>Location</span>
+                    <h4>Multan, Punjab, Pakistan 🇵🇰</h4>
+                </div>
+            </div>
+
+            <div class="contact-sci">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="https://wa.me/923048874174" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                <a href="#"><i class='bx bxl-tiktok'></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form reveal-right">
+            <h3>Send Message</h3>
+
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" id="fname" placeholder="Your Name">
+                </div>
+                <div class="input-box">
+                    <input type="email" id="femail" placeholder="Email Address">
+                </div>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="fsubject" placeholder="Subject / Service Needed">
+            </div>
+
+            <textarea id="fmsg" placeholder="Your Message..."></textarea>
+
+            <button class="btn-box" onclick="sendMsg()">
+                <i class='bx bx-send'></i> Send Message
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-text">
+        <p>© 2025 <span><a href="https://www.linkedin.com/in/mujeeb-ch/">Mujeeb.</a></span> All Rights Reserved | Shopify Developer from 🇵🇰 Pakistan</p>
+    </div>
+    <div class="footer-iconTop">
+        <a href="index.html"><i class='bx bx-up-arrow-alt'></i></a>
+    </div>
+</footer>
+
+</div>
+
+<script>
+// TYPED.JS
+var typed = new Typed(".text", {
+    strings: ["Shopify Expert", "Frontend Developer", "Liquid Coder", "Store Designer", "Canva Designer"],
+    typeSpeed: 100,
+    backSpeed: 100,
+    backDelay: 1000,
+    loop: true
+});
+
+// MOBILE MENU
+function toggleMenu() {
+    const navbar = document.getElementById('navbar');
+    const icon = document.getElementById('menu-icon');
+    navbar.classList.toggle('open');
+    if (navbar.classList.contains('open')) {
+        icon.classList.replace('bx-menu', 'bx-x');
+    } else {
+        icon.classList.replace('bx-x', 'bx-menu');
+    }
+}
+
+// Close menu on nav link click
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navbar').classList.remove('open');
+        document.getElementById('menu-icon').classList.replace('bx-x', 'bx-menu');
+    });
+});
+
+// STICKY HEADER & ACTIVE NAV
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    header.classList.toggle('sticky', window.scrollY > 50);
+
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar a');
+    let current = '';
+    sections.forEach(sec => {
+        const sTop = sec.offsetTop - 100;
+        if (window.scrollY >= sTop) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+            el.classList.add('active');
+        }
+    });
+
+    document.querySelectorAll('.progress').forEach(bar => {
+        if (bar.getBoundingClientRect().top < window.innerHeight - 50) {
+            bar.style.width = bar.dataset.width + '%';
+        }
+    });
+});
+
+window.dispatchEvent(new Event('scroll'));
+
+// ===== PORTFOLIO SLIDER WITH ARROWS =====
+(function() {
+    const container = document.getElementById('portfolioContainer');
+    const dots = document.querySelectorAll('#portfolioDots span');
+    if (!container) return;
+
+    const cardWidth = 320 + 32; // card width + gap
+    let currentIndex = 0;
+    const totalCards = container.children.length;
+
+    // Auto scroll is FALSE by default — user controls with arrows
+    // (no clone needed since we use manual sliding)
+
+    function updateSlider() {
+        container.style.transform = 'translateX(-' + (currentIndex * cardWidth) + 'px)';
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    window.slidePortfolio = function(dir) {
+        currentIndex += dir;
+        if (currentIndex < 0) currentIndex = totalCards - 1;
+        if (currentIndex >= totalCards) currentIndex = 0;
+        updateSlider();
+    };
+
+    updateSlider();
+})();
+
+// SEND MESSAGE
+function sendMsg() {
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const subject = document.getElementById('fsubject').value.trim();
+    const msg     = document.getElementById('fmsg').value.trim();
+
+    if (!name || !email || !msg) {
+        alert('Please fill in all required fields!');
+        return;
+    }
+
+    const waText = encodeURIComponent(
+        'Hello Mujeeb! 👋\n\n' +
+        '*Name:* ' + name + '\n' +
+        '*Email:* ' + email + '\n' +
+        '*Subject:* ' + (subject || 'N/A') + '\n' +
+        '*Message:* ' + msg
+    );
+
+    window.open('https://wa.me/923048874174?text=' + waText, '_blank');
+
+    document.getElementById('fname').value    = '';
+    document.getElementById('femail').value   = '';
+    document.getElementById('fsubject').value = '';
+    document.getElementById('fmsg').value     = '';
+}
+</script>
+</body>
+</html>
