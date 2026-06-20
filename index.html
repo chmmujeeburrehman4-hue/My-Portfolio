@@ -1,4 +1,3 @@
-cat > /home/claude/portfolio.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,17 +18,23 @@ cat > /home/claude/portfolio.html << 'HTMLEOF'
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
+
 .main-portfilio{
     width: 100%;
     max-width: 1300px;
     margin:0px auto;
+    overflow-x: hidden;
 }
 body {
     color: #ededed;
     background: #081b29;
       max-width: 1300px;
     margin: 0px auto;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* ===== SCROLLBAR ===== */
@@ -114,6 +119,7 @@ body {
 
 .home-content {
     max-width: 600px;
+    min-width: 0;
 }
 
 .home-content h3 {
@@ -153,6 +159,7 @@ body {
 
 .home-sci {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .home-sci a {
@@ -183,6 +190,7 @@ body {
 .btn-box-button {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .btn-box {
@@ -199,6 +207,7 @@ body {
     animation-delay: 2s;
     box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
     transition: .5s;
+    white-space: nowrap;
 }
 
 .btn-box:hover {
@@ -228,6 +237,8 @@ body {
 /* ===== SECTIONS COMMON ===== */
 section {
     padding: 100px 10%;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .heading {
@@ -268,6 +279,10 @@ section {
 .about-img img {
     width: 100%;
     object-fit: cover;
+}
+
+.about-text {
+    min-width: 0;
 }
 
 .about-text h2 {
@@ -422,7 +437,8 @@ section {
 /* ===== PORTFOLIO ===== */
 .portfolio {
     background: #081b29;
-    overflow: hidden;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .portfolio .heading {
@@ -463,6 +479,7 @@ section {
 /* Scroll wrapper */
 .portfolio-scroll-wrapper {
     width: 100%;
+    max-width: 100%;
     overflow: hidden;
     position: relative;
     padding: 20px 0 30px;
@@ -608,6 +625,7 @@ section {
     justify-content: center;
     gap: 8px;
     margin-top: 25px;
+    flex-wrap: wrap;
 }
 
 .portfolio-dots span {
@@ -624,30 +642,6 @@ section {
     box-shadow: 0 0 8px #0ef;
     width: 24px;
     border-radius: 4px;
-}
-
-@media (max-width: 900px) {
-    .portfolio-scroll-wrapper {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        cursor: default;
-    }
-    .portfolio-scroll-wrapper::-webkit-scrollbar {
-        height: 4px;
-    }
-    .portfolio-scroll-wrapper::-webkit-scrollbar-thumb {
-        background: #0ef;
-        border-radius: 10px;
-    }
-    .portfolio-container {
-        animation: none !important;
-        transform: none !important;
-    }
-    .portfolio-box {
-        scroll-snap-align: start;
-        width: 280px;
-    }
 }
 
 .p-tag {
@@ -749,6 +743,10 @@ section {
     flex-shrink: 0;
 }
 
+.info-item .info-text {
+    min-width: 0;
+}
+
 .info-item .info-text span {
     font-size: 12px;
     color: #0ef;
@@ -762,12 +760,14 @@ section {
     font-size: 15px;
     font-weight: 500;
     color: #fff;
+    word-break: break-word;
 }
 
 .contact-sci {
     display: flex;
     gap: 12px;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .contact-sci a {
@@ -793,7 +793,7 @@ section {
 
 .contact-form {
     flex: 1;
-    min-width: 300px;
+    min-width: 280px;
     max-width: 480px;
 }
 
@@ -808,12 +808,18 @@ section {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .input-box,
 .contact-form textarea {
     width: 100%;
     margin-bottom: 15px;
+}
+
+.input-box {
+    min-width: 0;
+    flex: 1 1 200px;
 }
 
 .input-box input,
@@ -875,6 +881,12 @@ section {
     flex-wrap: wrap;
     gap: 1rem;
     border-top: 1px solid rgba(0,238,255,.1);
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.footer-text {
+    min-width: 0;
 }
 
 .footer-text p {
@@ -1009,6 +1021,7 @@ section {
 
     .home-img-box { width: 280px; height: 280px; }
     .home-sci { justify-content: center; }
+    .btn-box-button { justify-content: center; }
 
     .about {
         flex-direction: column;
@@ -1032,17 +1045,94 @@ section {
     .heading { font-size: 36px; }
 
     .footer { flex-direction: column; text-align: center; }
+
+    .portfolio-scroll-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        cursor: default;
+    }
+    .portfolio-scroll-wrapper::-webkit-scrollbar {
+        height: 4px;
+    }
+    .portfolio-scroll-wrapper::-webkit-scrollbar-thumb {
+        background: #0ef;
+        border-radius: 10px;
+    }
+    .portfolio-container {
+        animation: none !important;
+        transform: none !important;
+    }
+    .portfolio-box {
+        scroll-snap-align: start;
+        width: 280px;
+    }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .home-content h1 { font-size: 38px; }
     .home-content h3 { font-size: 22px; }
     .home-img-box { width: 220px; height: 220px; }
     .about-img { width: 220px; height: 220px; }
     .about-text h2 { font-size: 36px; }
-    .input-group { flex-direction: column; gap: 0; }
-    .portfolio-container { grid-template-columns: 1fr; }
+    .input-group { flex-direction: row; gap: 0; }
+    .input-box { flex: 1 1 100%; }
     .services-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 360px) {
+    .header { padding: 12px 4%; }
+    .home { padding: 100px 4% 0; }
+    section { padding: 60px 4%; }
+    .footer { padding: 25px 4%; }
+
+    .home-content h1 { font-size: 30px; }
+    .home-content h3 { font-size: 18px; }
+    .home-content p { font-size: 14px; }
+    .home-img-box { width: 180px; height: 180px; }
+
+    .home-sci a {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+        margin: 20px 10px 20px 0;
+    }
+
+    .btn-box {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .about-img { width: 180px; height: 180px; }
+    .about-text h2 { font-size: 28px; }
+    .about-text h4 { font-size: 17px; }
+    .about-text p { font-size: 13px; }
+
+    .heading { font-size: 26px; }
+
+    .skills-column h3 { font-size: 22px; }
+
+    .service-box { padding: 30px 18px; }
+    .service-box i { font-size: 40px; }
+    .service-box h3 { font-size: 18px; }
+
+    .portfolio-box { width: 240px; }
+    .portfolio-thumb { height: 180px; }
+
+    .portfolio-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .contact-info-box h3,
+    .contact-form h3 { font-size: 21px; }
+
+    .info-item { padding: 12px; gap: 10px; }
+    .info-item i { font-size: 22px; }
+    .info-item .info-text h4 { font-size: 13px; }
+
+    .footer-text p { font-size: 12px; }
 }
 </style>
 
@@ -1098,7 +1188,7 @@ section {
         <p>My specialization includes Custom Liquid Coding, Shopify Theme Customization, and highly responsive HTML/CSS designs. In every project, I deliver the perfect balance of clean code and beautiful design that keeps customers engaged and drives sales.</p>
         <p>I am fluent in both Urdu and English and always available for new projects. Whether you need a store built from scratch or an existing one customized, I am ready to help!</p>
         <div class="btn-box-button">
-            <a href="https://github.com/chmmujeeburrehman4-hue/CV/blob/main/CV.pdf" class="btn-box" style="animation:none;opacity:1;">Download CV</a>
+            <a href="#" class="btn-box" style="animation:none;opacity:1;">Download CV</a>
             <a href="https://github.com/chmmujeeburrehman4-hue" class="btn-box" style="animation:none;opacity:1;">GitHub</a>
             <a href="https://www.linkedin.com/in/mujeeb-ch/" class="btn-box" style="animation:none;opacity:1;">LinkedIn</a>
         </div>
@@ -1259,7 +1349,19 @@ section {
                 </div>
             </div>
 
-            
+            <div class="portfolio-box">
+                <div class="portfolio-thumb">
+                    <img src="Screenshot 2026-06-13 073342.png" class="portfolio-img">
+                    <div class="portfolio-layer">
+                        <a href="https://chmmujeeburrehman4-hue.github.io/custom-shopify-restaurant-theme/" target="_blank"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Grilli — Luxury Food Website</h3>
+                    <div class="portfolio-tags">
+                        <span class="p-tag t-h">HTML</span>
+                        <span class="p-tag t-c">CSS</span>
+                    </div>
                 </div>
             </div>
 
@@ -1424,14 +1526,20 @@ window.dispatchEvent(new Event('scroll'));
     const dots = document.querySelectorAll('#portfolioDots span');
     if (!container) return;
 
-    const cardWidth = 320 + 32; // card width + gap
+    function getCardWidth() {
+        const box = container.querySelector('.portfolio-box');
+        if (!box) return 352;
+        const style = window.getComputedStyle(container);
+        const gap = parseFloat(style.gap) || 32;
+        return box.getBoundingClientRect().width + gap;
+    }
+
     let currentIndex = 0;
     const totalCards = container.children.length;
 
-    // Auto scroll is FALSE by default — user controls with arrows
-    // (no clone needed since we use manual sliding)
-
     function updateSlider() {
+        if (window.innerWidth <= 900) return;
+        const cardWidth = getCardWidth();
         container.style.transform = 'translateX(-' + (currentIndex * cardWidth) + 'px)';
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentIndex);
@@ -1444,6 +1552,8 @@ window.dispatchEvent(new Event('scroll'));
         if (currentIndex >= totalCards) currentIndex = 0;
         updateSlider();
     };
+
+    window.addEventListener('resize', updateSlider);
 
     updateSlider();
 })();
